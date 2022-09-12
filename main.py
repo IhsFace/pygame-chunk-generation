@@ -1,5 +1,6 @@
 import pygame
 import sys
+import noise # only import if using mountaineous terrain generation
 
 
 class Player(): # usually a class should be in another file for organisation, which is why it has parameters
@@ -68,10 +69,19 @@ def generate_chunk(x, y):
             target_x = x * chunk_size + x_pos
             target_y = y * chunk_size + y_pos
             tile_type = 0
+            # use this section for flat terrain
             if target_y > 10:
                 tile_type = 2
                 chunk_data.append([[target_x, target_y], tile_type])
             elif target_y == 10:
+                tile_type = 1
+                chunk_data.append([[target_x, target_y], tile_type])
+            # use this section for mountaineous terrain (make sure to import noise)
+            height = int(noise.pnoise1(target_x * 0.1, repeat=999999999) * 6) # change the * 6 to a higher or lower number to increase or reduce the terrain height
+            if target_y > 8 - height:
+                tile_type = 2
+                chunk_data.append([[target_x, target_y], tile_type])
+            elif target_y == 8 - height:
                 tile_type = 1
                 chunk_data.append([[target_x, target_y], tile_type])
     return chunk_data
