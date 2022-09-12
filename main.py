@@ -148,7 +148,7 @@ def game():
 
 
 pygame.init()
-pygame.display.set_caption('Mining Sim')
+pygame.display.set_caption('Pygame Window')
 window_size = pygame.math.Vector2(600, 400)
 display = pygame.display.set_mode(window_size)
 clock = pygame.time.Clock()
