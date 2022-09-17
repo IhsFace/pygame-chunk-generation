@@ -3,7 +3,7 @@ import sys
 import noise # only import if using mountaineous terrain generation
 
 
-class Player(): # usually a class should be in another file for organisation, which is why it has parameters
+class Player: # usually a class should be in another file for organisation, which is why it has parameters
     def __init__(self, pos, tile_size):
         self.display = pygame.display.get_surface()
         self.image = pygame.Surface((tile_size, tile_size))
